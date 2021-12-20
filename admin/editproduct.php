@@ -4,23 +4,21 @@ session_start();
 include("../db.php");
 $product_id=$_REQUEST['product_id'];
 
-$result=mysqli_query($con,"select product_id,product_cat,product_brand, product_title, product_price,product_desc,first_price,interest from products where product_id='$product_id'")or die ("query 1 incorrect.......");
+$result=mysqli_query($con,"select product_id,product_cat,product_brand, product_title, product_price,product_desc from products where product_id='$product_id'")or die ("query 1 incorrect.......");
 
-list($product_id,$product_cat,$product_brand, $product_title, $product_price, $product_desc,$first_price,$interest)=mysqli_fetch_array($result);
+list($product_id,$product_cat,$product_brand, $product_title, $product_price, $product_desc)=mysqli_fetch_array($result);
 
 if(isset($_POST['btn_save'])) 
 {
 
 $product_id=$_POST['product_id'];
-$first_price=$_POST['first_price'];
 $product_price=$_POST['product_price'];
 $product_title=$_POST['product_title'];
 $product_brand=$_POST['product_brand'];
 $product_cat=$_POST['product_cat'];
 $product_desc=$_POST['product_desc'];
-$interest=$product_price-$first_price;
 
-mysqli_query($con,"update products set product_title='$product_title', product_price='$product_price', product_brand='$product_brand', product_cat='$product_cat',product_desc='$product_desc',first_price='$first_price',interest='$interest' where product_id='$product_id'")or die("Query 2 is inncorrect..........");
+mysqli_query($con,"update products set product_title='$product_title', product_price='$product_price', product_brand='$product_brand', product_cat='$product_cat',product_desc='$product_desc' where product_id='$product_id'")or die("Query 2 is inncorrect..........");
 
 header("location: productlist.php");
 mysqli_close($con);
@@ -44,12 +42,6 @@ include "topheader.php";
                       <div class="form-group">
                         <label>Tên sản phẩm</label>
                         <input type="text" id="product_title" name="product_title"  class="form-control" value="<?php echo $product_title; ?>" >
-                      </div>
-                    </div>
-                    <div class="col-md-12 ">
-                      <div class="form-group">
-                        <label>Giá nhập</label>
-                        <input type="text" id="first_price" name="first_price" class="form-control" value="<?php echo $first_price; ?>" >
                       </div>
                     </div>
                     <div class="col-md-12 ">

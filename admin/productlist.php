@@ -57,18 +57,18 @@ include "topheader.php";
                 <div class="table-responsive ps">
                   <table class="table tablesorter " id="page1">
                     <thead class=" text-primary">
-                      <tr><th>Ảnh</th><th>Tên sản phẩm</th><th>Giá nhập</th><th>Giá bán</th>
+                      <tr><th>Ảnh</th><th>Tên sản phẩm</th><th></th><th>Giá bán</th>
                       <th><a class=" btn btn-success" href="addproduct.php">Thêm sản phẩm</a></th>
                       </tr></thead>
                     <tbody>
                       <?php 
 
-                        $result=mysqli_query($con,"select product_id,product_image, product_title,product_price,first_price from products  where  product_cat=1 or product_cat=2 or product_cat=3 or product_cat=4 or product_cat=5 or product_cat=6 or product_cat=7 or product_cat=8 or product_cat=9 or product_cat=10 Limit $page1,10")or die ("query 1 incorrect.....");
+                        $result=mysqli_query($con,"select product_id,product_image, product_title,product_price from products  where  product_cat=1 or product_cat=2 or product_cat=3 or product_cat=4 or product_cat=5 or product_cat=6 or product_cat=7 or product_cat=8 or product_cat=9 or product_cat=10 Limit $page1,10")or die ("query 1 incorrect.....");
 
-                        while(list($product_id,$image,$product_name,$price,$first_price)=mysqli_fetch_array($result))
+                        while(list($product_id,$image,$product_name,$price)=mysqli_fetch_array($result))
                         {
                         echo "<tr><td><img src='../product_images/$image' style='width:50px; height:50px;'></td><td>$product_name</td>
-                        <td>$first_price VNĐ</td>
+                        <td></td>
                         <td>$price VNĐ</td>
                         <td>
 
